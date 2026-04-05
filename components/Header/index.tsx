@@ -27,7 +27,7 @@ export default function Header({
 }: HeaderProps) {
   const alignTags = ["left", "center", "right", "justify"];
   return (
-    <div className="p-1 flex flex-row gap-2 backdrop-blur-2xl border-b">
+    <div className="p-1 flex flex-row gap-2 border-b">
       <ToggleGroup
         type="multiple"
         value={["bold", "italic", "underline", "strikethrough"].filter((t) => {

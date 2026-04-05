@@ -42,11 +42,11 @@ export function parseBBCode(input: string): string {
   
     // Listeler
     s = s.replace(/\[list=1\]([\s\S]*?)\[\/list\]/gi, (m, items) => {
-      const lis = items.replace(/\[\*\](.*?)(?=\[\*\]|\[\/list\]|$)/gis, '<li>$1</li>');
+      const lis = items.replace(/\[\*\]([\s\S]*?)(?=\[\*\]|\[\/list\]|$)/gi, '<li>$1</li>');
       return `<ol>${lis}</ol>`;
     });
     s = s.replace(/\[list\]([\s\S]*?)\[\/list\]/gi, (m, items) => {
-      const lis = items.replace(/\[\*\](.*?)(?=\[\*\]|\[\/list\]|$)/gis, '<li>$1</li>');
+      const lis = items.replace(/\[\*\]([\s\S]*?)(?=\[\*\]|\[\/list\]|$)/gi, '<li>$1</li>');
       return `<ul>${lis}</ul>`;
     });
   
