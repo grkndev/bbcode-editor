@@ -1,0 +1,21 @@
+// src/icons/index.ts
+export {
+  Image01Icon,
+  LeftToRightListBulletIcon,
+  Link02Icon,
+  MinusSignIcon,
+  PlusSignIcon,
+  QuoteDownIcon,
+  RecordIcon,
+  SolidLine01Icon,
+  SourceCodeIcon,
+  TableIcon,
+  TextAlignCenterIcon,
+  TextAlignJustifyCenterIcon,
+  TextAlignLeftIcon,
+  TextAlignRightIcon,
+  TextBoldIcon,
+  TextItalicIcon,
+  TextStrikethroughIcon,
+  TextUnderlineIcon,
+} from "@hugeicons/core-free-icons";
