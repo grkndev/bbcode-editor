@@ -18,4 +18,7 @@ export {
   TextItalicIcon,
   TextStrikethroughIcon,
   TextUnderlineIcon,
+  LayoutRightIcon,
+  LayoutLeftIcon,
+  LayoutTwoColumnIcon
 } from "@hugeicons/core-free-icons";
