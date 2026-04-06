@@ -5,7 +5,17 @@ import { Button } from "@/components/ui/button";
 import * as Icons from "./Icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { PanelImperativeHandle } from "react-resizable-panels";
-
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Input } from "../ui/input";
 interface HeaderProps {
   onInsertTag: (open: string, close: string) => void;
   onUpdateSize: (delta: number) => void;
@@ -32,6 +42,15 @@ export default function Header({
   leftPanel,
   rightPanel,
 }: HeaderProps) {
+  const [imageUri, setImgUri] = React.useState("");
+  const [error, setError] = React.useState("");
+  const [isDialogOpen, setDialog] = React.useState(false)
+
+  const IMAGE_URL_REGEX =
+    /^https?:\/\/([\w-]+\.)+[\w-]+(\/[\w\-./?%&=+#@!~]*)?(\.(jpg|jpeg|png|gif|webp|svg|bmp|ico|avif))(\?[\w\-./?%&=+#@!~]*)?$/i;
+
+  const isValidImageUrl = (url: string) => IMAGE_URL_REGEX.test(url);
+
   const alignTags = ["left", "center", "right", "justify"];
   return (
     <div className="p-2 flex flex-row justify-between gap-2 border-b">
@@ -151,9 +170,7 @@ export default function Header({
         <ButtonGroup>
           <Button
             variant="outline"
-            onMouseDown={prevent(() =>
-              onInsertTag("[color=#000000]", "[/color]"),
-            )}
+            onMouseDown={prevent(() => onInsertTag("[*]", ""))}
           >
             <HugeiconsIcon icon={Icons.RecordIcon} />
           </Button>
@@ -169,12 +186,53 @@ export default function Header({
           >
             <HugeiconsIcon icon={Icons.Link02Icon} />
           </Button>
-          <Button
-            variant="outline"
-            onMouseDown={prevent(() => onInsertTag("[img]", "[/img]"))}
-          >
-            <HugeiconsIcon icon={Icons.Image01Icon} />
-          </Button>
+
+          <Dialog   open={isDialogOpen} onOpenChange={setDialog}>
+            <DialogTrigger asChild>
+              <Button
+                variant="outline"
+                //onMouseDown={prevent(() => onInsertTag("[img]", "[/img]"))}
+              >
+                <HugeiconsIcon icon={Icons.Image01Icon} />
+              </Button>
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Import image URL</DialogTitle>
+                <DialogDescription>
+                  Paste the URL which is you want to import to the editor
+                </DialogDescription>
+              </DialogHeader>
+
+              <Input
+                placeholder="https://..."
+                value={imageUri}
+                onChange={(e) => {
+                  setImgUri(e.target.value);
+                  setError("");
+                }}
+                className={error ? "border-red-500" : ""}
+              />
+              {error && <p className="text-sm text-red-500">{error}</p>}
+
+              <DialogFooter>
+                <Button
+                  onMouseDown={prevent(() => {
+                    if (!isValidImageUrl(imageUri)) {
+                      setError("Please enter a valid image URL.");
+                      return;
+                    }
+                    onInsertTag("[img]"+imageUri, "[/img]");
+                    setDialog(false);
+                    
+                  })}
+                >
+                  Import
+                </Button>
+              </DialogFooter>
+            </DialogContent>
+          </Dialog>
+
           <Button
             variant="outline"
             onMouseDown={prevent(() =>
@@ -205,17 +263,20 @@ export default function Header({
       </div>
       <div>
         <ButtonGroup>
-          <Button variant="outline" onMouseDown={prevent(() => {
-            leftPanel.current?.collapse();
-            rightPanel.current?.expand()
-          })}>
+          <Button
+            variant="outline"
+            onMouseDown={prevent(() => {
+              leftPanel.current?.collapse();
+              rightPanel.current?.expand();
+            })}
+          >
             <HugeiconsIcon icon={Icons.LayoutRightIcon} />
           </Button>
           <Button
             variant="outline"
             onMouseDown={prevent(() => {
-              rightPanel.current?.expand();
-              leftPanel.current?.expand()
+              rightPanel.current?.resize("50%");
+              leftPanel.current?.resize("50%");
             })}
           >
             <HugeiconsIcon icon={Icons.LayoutTwoColumnIcon} />
@@ -223,8 +284,8 @@ export default function Header({
           <Button
             variant="outline"
             onMouseDown={prevent(() => {
-              rightPanel.current?.collapse()
-              leftPanel.current?.expand()
+              rightPanel.current?.collapse();
+              leftPanel.current?.expand();
             })}
           >
             <HugeiconsIcon icon={Icons.LayoutLeftIcon} />
