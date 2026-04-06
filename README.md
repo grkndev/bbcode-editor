@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BBCode Editor
 
-## Getting Started
+A modern, feature-rich BBCode editor built with Next.js. Write and preview BBCode in real time — try it live at [bbcode.grkn.dev](https://bbcode.grkn.dev).
 
-First, run the development server:
+![BBCode Editor](https://bbcode.grkn.dev/image.png)
+
+---
+
+## ✨ Features
+
+- **Live Preview** — See your BBCode rendered in real time as you type
+- **Toolbar** — One-click formatting for bold, italic, underline, strikethrough, and more
+- **Image Import** — Insert images via URL with built-in validation
+- **Code Blocks** — Syntax-highlighted code tag support
+- **Color & Size** — Font color and size controls via toolbar
+- **Keyboard Friendly** — Tag insertion works seamlessly with keyboard shortcuts
+- **Responsive UI** — Works on desktop and mobile browsers
+
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Framework | [Next.js](https://nextjs.org/) (App Router) |
+| Language | TypeScript |
+| UI Components | [shadcn/ui](https://ui.shadcn.com/) |
+| Icons | [Hugeicons](https://hugeicons.com/) |
+| Styling | Tailwind CSS |
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js `18+`
+- npm, yarn, or pnpm
+
+### Installation
 
 ```bash
+# Clone the repository
+git clone https://github.com/grkndev/bbcode-editor.git
+cd bbcode-editor
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Build for Production
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 📁 Project Structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+bbcode-editor/
+├── app/                  # Next.js App Router pages
+├── components/
+│   ├── ui/               # shadcn/ui base components
+│   └── editor/           # BBCode editor components
+├── lib/                  # Utility functions & BBCode parser
+├── public/               # Static assets
+└── styles/               # Global styles
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🌐 Live Demo
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+You can try the editor without installing anything at:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+**[bbcode.grkn.dev](https://bbcode.grkn.dev)**
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Here's how to get started:
+
+1. Fork the repository
+2. Create a new branch: `git checkout -b feature/your-feature-name`
+3. Make your changes and commit: `git commit -m 'feat: add your feature'`
+4. Push to your branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+Please make sure your code follows the existing style and that the project builds without errors before submitting a PR.
+
+---
+
+## 🐛 Bug Reports
+
+Found a bug? Please open an [issue](https://github.com/grkndev/bbcode-editor/issues) and include:
+
+- What you expected to happen
+- What actually happened
+- Steps to reproduce
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+<p align="center">
+  Made by <a href="https://github.com/grkndev">grkndev</a>
+</p>

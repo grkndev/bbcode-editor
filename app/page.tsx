@@ -240,7 +240,7 @@ export default function Home() {
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 className="w-full h-full resize-none p-3 outline-none font-mono text-sm bg-background"
-                placeholder="BBCode yaz..."
+                placeholder="Write BBCode..."
                 spellCheck={false}
               />
             </ResizablePanel>
